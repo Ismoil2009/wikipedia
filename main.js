@@ -20,11 +20,11 @@ frm.addEventListener("submit", (e) => {
   fetchPages(value);
 });
 
-const fetchPages = async (searchValue) => {
+const fetchPages = async (searchVal) => {
   resl.innerHTML = `<div class="loading"></div>`;
 
   try {
-    const response = await fetch(`${url}${searchValue}`);
+    const response = await fetch(`${url}${searchVal}`);
 
     const data = await response.json();
 
@@ -35,7 +35,7 @@ const fetchPages = async (searchValue) => {
       return;
     }
 
-    renderResults(results);
+    renderRes(results);
   } catch (error) {
     console.log(error);
 
@@ -45,8 +45,8 @@ const fetchPages = async (searchValue) => {
   }
 };
 
-const renderResults = (list) => {
-  const cardsList = list
+const renderRes = (list) => {
+  const cards = list
     .map((item) => {
       const { title, snippet, pageid } = item;
       return `<a href="http://en.wikipedia.org/?curid=${pageid}" target="_blank">
@@ -59,7 +59,7 @@ const renderResults = (list) => {
     .join("");
 
   resl.innerHTML = `<div class="articles">
-          ${cardsList}
+          ${cards}
         </div>
       </div>`;
 };
