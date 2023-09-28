@@ -1,19 +1,19 @@
 const url =
   "https://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=20&format=json&origin=*&srsearch=";
 
-const formDOM = document.querySelector(".form");
+const frm = document.querySelector(".form");
 
-const inputDOM = document.querySelector(".search-input");
+const inp = document.querySelector(".search-input");
 
-const resultsDOM = document.querySelector(".result");
+const resl = document.querySelector(".result");
 
-formDOM.addEventListener("submit", (e) => {
+frm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const value = inputDOM.value;
+  const value = inp.value;
 
   if (!value) {
-    resultsDOM.innerHTML = `<div class='error'>Please Enter Valid Search Term</div>`;
+    resl.innerHTML = `<div class='error'>Please Enter Valid Search Term</div>`;
     return;
   }
 
@@ -21,7 +21,7 @@ formDOM.addEventListener("submit", (e) => {
 });
 
 const fetchPages = async (searchValue) => {
-  resultsDOM.innerHTML = `<div class="loading"></div>`;
+  resl.innerHTML = `<div class="loading"></div>`;
 
   try {
     const response = await fetch(`${url}${searchValue}`);
@@ -31,7 +31,7 @@ const fetchPages = async (searchValue) => {
     const results = data.query.search;
 
     if (results.length < 1) {
-      resultsDOM.innerHTML = `<div class='error'>No Matching Results. Please Try Again!</div>`;
+      resl.innerHTML = `<div class='error'>No Matching Results. Please Try Again!</div>`;
       return;
     }
 
@@ -39,7 +39,7 @@ const fetchPages = async (searchValue) => {
   } catch (error) {
     console.log(error);
 
-    resultsDOM.innerHTML = `<div class='error'>There Was An Error...</div>`;
+    resl.innerHTML = `<div class='error'>There Was An Error...</div>`;
 
     return;
   }
@@ -58,7 +58,7 @@ const renderResults = (list) => {
     })
     .join("");
 
-  resultsDOM.innerHTML = `<div class="articles">
+  resl.innerHTML = `<div class="articles">
           ${cardsList}
         </div>
       </div>`;
