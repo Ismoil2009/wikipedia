@@ -1,9 +1,14 @@
+/* Import codes */
+
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
 /* Simple codes */
 
 *,
 ::after,
 ::before {
   box-sizing: border-box;
+  font-family: "Mooli";
 }
 
 html {
@@ -203,13 +208,14 @@ ul {
   text-align: center;
 }
 
-.container img {
+.container .logo-wiki {
   width: 200px;
 }
 
 .container h3 {
   margin-bottom: 2rem;
   color: var(--white);
+  font-size: 50px;
 }
 
 .form {
